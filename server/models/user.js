@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
@@ -19,8 +20,12 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    admin: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true, versionKey: false }
 );
-userSchema.index({username:1, email:1})
+userSchema.index({ username: 1, email: 1 });
 export default mongoose.model("Users", userSchema);
