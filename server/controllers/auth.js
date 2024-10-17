@@ -1,32 +1,24 @@
 import user from "../models/user.js";
-import { registerSchema } from "../schemas/auth.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 let refreshTokens = [];
 
 export const register = async (req, res) => {
-  //lấy dữ liệu từ user
-  const { username, email, password } = req.body;
-  // kiểm tra xem dữ liệu có hợp lệ không
-  const { error } = registerSchema.validate(req.body, { abortEarly: false });
-  if (error) {
-    console.log(error.details.map((messages) => messages.messages));
+  try {
+    const salt = await bcryptjs.genSalt(10);
+    const hashed = await bcryptjs.hash(req.body.password, salt);
+
+    const newUser = await new user({
+      username: req.body.username,
+      email: req.body.email,
+      password: hashed,
+    })
+    const User = await newUser.save();
+    res.status(200).json(User)
+  } catch (error) {
+    res.status(500).json(error)
   }
-  // mã hóa mật khẩu bằng bcryptjs
-  const hashPassword = await bcryptjs.hash(password, 10);
-
-  //lưu user vào database
-
-  user.create({
-    username,
-    email,
-    password: hashPassword,
-  });
-  //trả về thông tin user đã đăng ký
-  return res.status(201).json({
-    user: user,
-  });
 };
 const generateAccessToken = (user) => {
   return jwt.sign(

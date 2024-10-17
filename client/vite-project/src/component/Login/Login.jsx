@@ -1,8 +1,8 @@
-
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../Redux/apiRequest";
+import "../Login/Login.css"
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -19,61 +19,80 @@ function Login() {
     loginUser(newUser, dispatch, navigate);
   };
   return (
-    <div>
-      <div className="container d-flex flex-column align-items-center min-vh-100">
-        <div className="row w-100 justify-content-center mt-5">
-          <div className="col-12 col-md-6 col-lg-4">
-            <h1 className="text-center m-5 custom-text ">Tài khoản</h1>
-            <div className="d-flex gap-3 justify-content-center mb-5 mt-5">
-              <h3 className="dn">Đăng nhập</h3>
-              <h3 className="dk inline-none">
-                <Link to="/register">Đăng ký</Link>
-              </h3>
-            </div>
-            <div className="f">
-              <form onSubmit={handleLogin}>
-                <div className="form-group">
-                  <label htmlFor="usernameOrEmail" className="mb-3">
-                    Đăng nhập tài khoản của bạn
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Tên tài khoản"
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </div>
-                <div className="form-group mt-3">
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    placeholder="Mật khẩu"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div className="form-group form-check mt-3">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="rememberMe"
-                  />
-                  <label className="form-check-label" htmlFor="rememberMe">
-                    Ghi nhớ
-                  </label>
-                </div>
-                <button type="submit" className="btn btn-warning w-100 mt-3">
-                  Đăng nhập
-                </button>
-                <div className="text-center mt-3">
-                  <a href="/forgot-password">Quên mật khẩu?</a>
-                </div>
-              </form>
-            </div>
+    <>
+      <div id="logreg-forms">
+        <form onClick={handleLogin} className="form-signin">
+          <h1
+            className="h3 mb-3 font-weight-normal"
+            style={{ textAlign: "center" }}
+          >
+            {" "}
+            Sign in
+          </h1>
+          <div className="social-login">
+            <button className="btn facebook-btn social-btn" type="button">
+              <span>
+                Sign in with Facebook
+              </span>{" "}
+            </button>
+            <button className="btn google-btn social-btn" type="button">
+              <span>
+                 Sign in with Google+
+              </span>{" "}
+            </button>
           </div>
-        </div>
+          <p style={{ textAlign: "center" }}> OR</p>
+          <input
+            type="text"
+            id="inputEmail"
+            className="form-control"
+            placeholder="Username"
+            required=""
+            onChange={(e)=>setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            id="inputPassword"
+            className="form-control"
+            placeholder="Password"
+            required=""
+            onChange={(e)=>setPassword(e.target.value)}
+          />
+          <button className="btn btn-success btn-block" type="submit">
+            <i className="fas fa-sign-in-alt" /> Sign in
+          </button>
+          <a href="#" id="forgot_pswd">
+            Forgot password?
+          </a>
+          <hr />
+          {/* <p>Don't have an account!</p>  */}
+          <button
+            className="btn btn-primary btn-block"
+            type="button"
+            id="btn-signup"
+          >
+            <i className="fas fa-user-plus" /> Sign up New Account
+          </button>
+        </form>
+        <form action="/reset/password/" className="form-reset">
+          <input
+            type="email"
+            id="resetEmail"
+            className="form-control"
+            placeholder="Email address"
+            required=""
+          />
+          <button className="btn btn-primary btn-block" type="submit">
+            Reset Password
+          </button>
+          <a href="#" id="cancel_reset">
+            <i className="fas fa-angle-left" /> Back
+          </a>
+        </form>
+       
+        <br />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 // Import express
 import express from "express"
-import productRouter from "./routers/products.js";
+// import productRouter from "./routers/products.js";
 import authRouter from "./routers/auth.js";
 import { connectDB } from "./config/db.js";
 import dotenv from "dotenv"
@@ -25,9 +25,9 @@ app.use(morgan("dev"))
 //connectDb
 connectDB(process.env.DB_URI)
 
-
+ 
 //router
-app.use("/api", productRouter);
+// app.use("/api", productRouter);
 app.use("/api", authRouter)
 app.use("/api/user", userRoute)
 

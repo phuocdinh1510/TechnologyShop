@@ -16,7 +16,7 @@ export const registerUser = async (User, dispatch, navigate) => {
     try {
       const res = await axios.post("http://localhost:8000/api/register", User);
       dispatch(registerSuccess(res.data));
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       dispatch(registerFaild(err));
     }

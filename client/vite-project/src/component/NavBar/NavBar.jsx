@@ -30,10 +30,10 @@ function NavBar() {
               </a>
             </li>
             <li>
-              <Link to={"/regsiter"}  >
-                Đăng kí 
+              <Link to={"/regsiter"}>Đăng kí</Link>
+              <Link to={"/login"} className="p-2">
+                Đăng nhập
               </Link>
-              <Link to={"/login"} className="p-2" >Đăng nhập</Link>
             </li>
           </ul>
         </div>
@@ -139,6 +139,7 @@ function NavBar() {
                     </div>
                   </div>
                 </div>
+
                 {/* /Cart */}
                 {/* Menu Toogle */}
                 <div className="menu-toggle">
@@ -156,6 +157,49 @@ function NavBar() {
         </div>
         {/* container */}
       </div>
+      <nav id="navigation">
+        {/* container */}
+        <div className="container">
+          {/* responsive-nav */}
+          <div id="responsive-nav">
+            {/* NAV */}
+            <ul className="main-nav nav navbar-nav">
+              <li className="active">
+                <Link to={"/"}>
+                  <a href="">Home</a>
+                </Link>
+              </li>
+              <li>
+              <Link to={"/Shop"}>
+                  <a href="">Hot deals</a>
+                </Link>
+              </li>
+              <li>
+              <Link to={"/Shop"}>
+                  <a href="">Categories</a>
+                </Link>
+              </li>
+              <li>
+              <Link to={"/Shop"}>
+                  <a href="">LapTops</a>
+                </Link>
+              </li>
+              <li>
+                <a href="#">Smartphones</a>
+              </li>
+              <li>
+                <a href="#">Cameras</a>
+              </li>
+              <li>
+                <a href="#">Accessories</a>
+              </li>
+            </ul>
+            {/* /NAV */}
+          </div>
+          {/* /responsive-nav */}
+        </div>
+        {/* /container */}
+      </nav>
       {/* /MAIN HEADER */}
     </header>
   );
