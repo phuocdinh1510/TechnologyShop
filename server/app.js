@@ -7,7 +7,9 @@ import dotenv from "dotenv"
 import morgan from "morgan"
 import cors from "cors"
 import cookieparser from "cookie-parser"
-import userRoute from "./routers/user.js"
+import userRouter from "./routers/user.js"
+import productRouter from "./routers/product.js"
+import categoryRouter from "./routers/category.js"
 
 dotenv.config();
 
@@ -27,9 +29,10 @@ connectDB(process.env.DB_URI)
 
  
 //router
-// app.use("/api", productRouter);
+app.use("/api/products", productRouter);
+app.use("/api/category", categoryRouter);
 app.use("/api", authRouter)
-app.use("/api/user", userRoute)
+app.use("/api/user", userRouter)
 
 
 // Khởi chạy server
